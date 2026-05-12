@@ -1,381 +1,191 @@
-# HRM-application
-A end to end hrm application , that can be useful  from jd upload to candidate shortlisting and sending automatic email with hr tracking and feedback loop
 
 
-HireIQ — Agentic AI-Powered HRM System
-An end-to-end intelligent hiring platform that automates resume screening, candidate evaluation, and hiring workflows using LLMs, rule-based systems, and human-in-the-loop decisions.
+<h1>HireIQ — Agentic AI-Powered HRM System</h1>
 
-Problem Statement
-Modern hiring is:
+<p>
+HireIQ is an end-to-end intelligent hiring platform that automates resume screening,
+candidate evaluation, and hiring workflows using LLMs, rule-based systems, and human-in-the-loop decisions.
+</p>
 
+<hr>
 
-Manual
+<h2>Problem Statement</h2>
 
+<ul>
+<li>Manual hiring process</li>
+<li>Bias in screening</li>
+<li>Time-consuming workflows</li>
+<li>Difficult to scale</li>
+</ul>
 
-Biased
+<p><strong>Solution:</strong></p>
+<p>Resume → AI Evaluation → Human Decision → Feedback Loop</p>
 
+<hr>
 
-Time-consuming
+<h2>System Overview</h2>
 
-
-Hard to scale
-
-
-HireIQ addresses this by building an agentic hiring system:
-Resume → AI Evaluation → Human Decision → Feedback Loop
-
-System Overview
+<p>
 Candidate Upload → Resume Parsing → AI Scoring → HR Dashboard → Manager Review → Final Decision
+</p>
+
+<hr>
+
+<h2>Core Features</h2>
+
+<h3>1. Resume Pipeline</h3>
+<ul>
+<li>Upload multiple resumes (PDF)</li>
+<li>Extract text using PyMuPDF</li>
+<li>Extract contact details (email, phone)</li>
+<li>Rule-based name extraction</li>
+</ul>
+
+<h3>2. AI Resume Scoring Engine</h3>
+<ul>
+<li>Uses LLM (ChatGroq)</li>
+<li>Evaluates skill match, experience, project alignment</li>
+</ul>
+
+<pre>
+{
+  "overall_score": 85,
+  "strengths": [...],
+  "gaps": [...],
+  "recommendation": "shortlist"
+}
+</pre>
+
+<h3>3. Intelligent Parsing Layer</h3>
+<ul>
+<li>Handles messy LLM outputs</li>
+<li>Ensures valid JSON parsing</li>
+<li>Prevents silent failures</li>
+</ul>
+
+<h3>4. HR Dashboard</h3>
+<ul>
+<li>Candidate ranking by score</li>
+<li>Shortlist / Reject actions</li>
+<li>Status tracking</li>
+</ul>
+
+<h3>5. Manager Review Layer</h3>
+<ul>
+<li>Final approval or rejection</li>
+<li>Decision tracking</li>
+</ul>
+
+<h3>6. Email Automation System</h3>
+<p>Built using SendGrid</p>
+<ul>
+<li>Application received email</li>
+<li>Shortlist notification</li>
+<li>Rejection notification</li>
+<li>Manager decision updates</li>
+</ul>
+
+<hr>
+
+<h2>Tech Stack</h2>
+
+<table>
+<tr><th>Layer</th><th>Technology</th></tr>
+<tr><td>Frontend</td><td>Streamlit</td></tr>
+<tr><td>Backend</td><td>Python</td></tr>
+<tr><td>Database</td><td>SQLite</td></tr>
+<tr><td>AI Engine</td><td>LangChain + LLM</td></tr>
+<tr><td>PDF Parsing</td><td>PyMuPDF</td></tr>
+<tr><td>Email</td><td>SendGrid</td></tr>
+</table>
+
+<hr>
+
+<h2>System Design Philosophy</h2>
+
+<p>Deterministic Logic + LLM Reasoning + Human Decisions</p>
+
+<hr>
+
+<h2>Strengths</h2>
+
+<ul>
+<li>Agentic multi-stage hiring workflow</li>
+<li>Robust LLM integration</li>
+<li>Reliable data pipeline</li>
+<li>Automated communication system</li>
+<li>Debuggable architecture</li>
+</ul>
+
+<hr>
+
+<h2>Limitations</h2>
+
+<ul>
+<li>SQLite is not scalable</li>
+<li>Streamlit is not production frontend</li>
+<li>LLM-only scoring (no ML model)</li>
+<li>No async processing</li>
+<li>No event-driven system</li>
+</ul>
 
-Core Features
-1. Resume Pipeline
+<hr>
 
+<h2>Future Improvements</h2>
 
-Upload multiple resumes (PDF)
+<ul>
+<li>PostgreSQL database</li>
+<li>FastAPI backend</li>
+<li>React frontend</li>
+<li>Hybrid ML + embedding scoring</li>
+<li>Feedback learning system</li>
+<li>Personalized test links</li>
+<li>Real-time integrity monitoring</li>
+<li>Event-driven architecture</li>
+<li>Full agentic orchestration</li>
+</ul>
 
+<hr>
 
-Extract structured text using PyMuPDF
+<h2>How to Run,before running set a llm and sendgridapi key</h2>
 
+<pre>
+pip install -r requirements.txt
+python initdb.py
+streamlit run main_app.py
+</pre>
 
-Extract contact details (email, phone)
+<hr>
 
+<h2>Key Learning Outcomes</h2>
 
-Rule-based name extraction to avoid hallucination
+<ul>
+<li>End-to-end system design</li>
+<li>Production-level LLM integration</li>
+<li>Data pipeline debugging</li>
+<li>Human-AI collaboration</li>
+<li>Real-world hiring workflow</li>
+</ul>
 
+<hr>
 
+<h2>Project Vision</h2>
 
-2. AI Resume Scoring Engine
+<p>
+Build a foundation for autonomous AI-driven hiring systems.
+</p>
 
+<hr>
 
-Uses LLM (ChatGroq)
+<h2>Author</h2>
 
-
-Evaluates:
-
-
-Skill match
-
-
-Experience relevance
-
-
-Project alignment
-
-
-
-
-Example output:
-{  "overall_score": 85,  "strengths": [...],  "gaps": [...],  "recommendation": "shortlist"}
-
-3. Intelligent Parsing Layer
-
-
-Robust JSON extraction from LLM output
-
-
-Handles malformed responses
-
-
-Prevents silent failures
-
-
-
-4. HR Dashboard
-
-
-Displays candidates sorted by score
-
-
-Categorization:
-
-
-Strong Match
-
-
-Moderate Match
-
-
-Weak Match
-
-
-
-
-Actions:
-
-
-Shortlist
-
-
-Reject (with reason)
-
-
-
-
-
-5. Manager Review Layer
-
-
-Reviews shortlisted candidates
-
-
-Final approval or rejection
-
-
-Triggers candidate communication
-
-
-
-6. Leader Dashboard
-
-
-Hiring analytics
-
-
-Shortlist vs reject trends
-
-
-Quality insights
-
-
-
-7. Email Automation System
-Uses SendGrid for email delivery.
-Emails sent:
-
-
-Application received (immediately after upload)
-
-
-Shortlisted notification
-
-
-Rejection notification
-
-
-Manager decision updates
-
-
-
-Tech Stack
-LayerTechnologyFrontendStreamlitBackendPythonDatabaseSQLiteAI EngineLangChain + LLMPDF ParsingPyMuPDFEmailSendGrid
-
-System Design Philosophy
-The system follows a hybrid approach:
-Deterministic Logic + LLM Reasoning + Human Decisions
-
-Strengths
-1. Agentic Workflow Design
-
-
-Multi-stage hiring pipeline
-
-
-Reflects real-world enterprise hiring process
-
-
-
-2. Robust LLM Integration
-
-
-Handles JSON parsing issues
-
-
-Reduces hallucination risks
-
-
-Enforces structured output
-
-
-
-3. Reliable Data Pipeline
-
-
-Prevents stale records
-
-
-Updates existing candidates correctly
-
-
-Deterministic name extraction
-
-
-
-4. Product-Oriented Design
-
-
-Automated candidate communication
-
-
-Role-based dashboards
-
-
-Human-in-the-loop decisions
-
-
-
-5. Debuggable System
-
-
-Logging at every stage
-
-
-Transparent processing pipeline
-
-
-Easy error tracing
-
-
-
-Limitations
-
-
-Uses SQLite (not suitable for scale)
-
-
-Streamlit UI is not production-grade
-
-
-LLM-only scoring (no ML calibration yet)
-
-
-No asynchronous processing
-
-
-No event-driven architecture
-
-
-
-Future Improvements
-1. Database Upgrade
-
-
-Replace SQLite with PostgreSQL
-
-
-Add indexing and scalability
-
-
-
-2. Backend API Layer
-
-
-Build FastAPI services
-
-
-Separate frontend and backend
-
-
-Enable microservices architecture
-
-
-
-3. Frontend Upgrade
-
-
-Replace Streamlit with React
-
-
-Improve performance and UX
-
-
-Enable real-time updates
-
-
-
-4. Advanced Scoring System
-Move from LLM-based scoring to:
-Hybrid = Embeddings + Machine Learning Model + LLM Explanation
-
-5. Feedback Learning System
-
-
-Use HR decisions as training labels
-
-
-Build predictive hiring model:
-P(shortlist | resume)
-
-
-
-6. Personalized Candidate Test Links
-
-
-Generate secure links for assessments
-
-
-Track candidate attempts
-
-
-Enable structured evaluation
-
-
-
-7. Real-Time Integrity Monitoring
-
-
-Detect tab switching
-
-
-Track typing behavior
-
-
-Monitor idle time
-
-
-Future model:
-P(cheating | behavioral signals)
-
-8. Event-Driven Architecture
-
-
-Introduce message queues (Kafka or Redis)
-
-
-Enable asynchronous agent workflows
-
-
-
-9. Full Agentic System
-
-
-Manager agent for planning
-
-
-Worker agent for scoring
-
-
-Evaluation agent for feedback loop
-
-
-
-How to Run
-pip install -r requirements.txtpython initdb.pystreamlit run main_app.py
-
-Key Learning Outcomes
-
-
-End-to-end system design
-
-
-Production-level LLM integration
-
-
-Data pipeline debugging
-
-
-Human-AI collaboration systems
-
-
-Real-world hiring workflow implementation
-
-
-
-Project Vision
-This project serves as a foundation for building autonomous AI-driven hiring systems.
-
-Author
-Shivam
+<p>
+Shivam<br>
 Data Scientist and AI System Builder
+</p>
 
-Final Note
-Thinking beyond models — building systems.
+<hr>
+
+<h2>Final Note</h2>
+
+<p>Thinking beyond models — building systems.</p>
